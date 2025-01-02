@@ -203,4 +203,22 @@ def linear_recur(n: int):
 def quadratic(n: int):
     num_matrix = [[0] * n for _ in range(n)]
 
+## O(n(n+1)/2) -> O(n^2)
+def quadratic_recur(n: int) -> int:
+    if n <= 0:
+        return 0
+    nums = [0] * n
+    return quadratic_recur(n - 1)
 
+## O(2^n)
+from modules import TreeNode
+def build_tree(n: int) -> TreeNode | None:
+    if n == 0:
+        return None
+    root = TreeNode(0)
+    root.left = build_tree(n - 1)
+    root.right = build_tree(n -1)
+    return root
+
+
+    
