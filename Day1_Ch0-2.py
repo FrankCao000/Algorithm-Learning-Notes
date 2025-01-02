@@ -65,8 +65,8 @@ def algo_C(n : int):
     for _ in range(10000):
         print(0)
 
-##Time-Complexity
-##O(1)
+# Time-Complexity
+# O(1)
 def constant(n: int) -> int:
     count = 0
     size = 10000
@@ -74,7 +74,7 @@ def constant(n: int) -> int:
         count += 1
     return count
 
-##O(n)
+# O(n)
 def linear(n: int) -> int:
     count = 0
     for _ in range(n):
@@ -87,7 +87,7 @@ def array_traversal(nums: list[int]) -> int:
         count += 1
     return count
 
-##O(n^2)
+# O(n^2)
 def quadratic(n: int) -> int:
     count = 0
     for i in range(n):
@@ -95,7 +95,7 @@ def quadratic(n: int) -> int:
             count += 1
     return count
 
-##O((n-1)n/2) -> O(n^2)
+# O((n-1)n/2) -> O(n^2)
 def bubble_sort(nums: list[int]) -> int:
     count = 0
     for i in range(len(nums) - 1, 0, -1):
@@ -107,7 +107,7 @@ def bubble_sort(nums: list[int]) -> int:
                 count += 3
     return count
 
-##O(2^n)
+# O(2^n)
 def exponnential(n: int) -> int:
     count = 0
     base = 1
@@ -123,7 +123,7 @@ def exp_recur(n: int) -> int:
         return 1
     return exp_recur(n-1) + exp_recur(n-1) + 1
 
-## Olog(n)
+# Olog(n)
 def logarithmic(n: int) -> int:
     count = 0
     while n > 1:
@@ -136,7 +136,7 @@ def log_recur(n: int) -> int:
         return 0
     return log_recur(n/2) + 1
 
-## O(nlog(n))
+# O(nlog(n))
 def linear_log_recur(n: int) -> int:
     if n <= 1:
         return 1
@@ -145,7 +145,7 @@ def linear_log_recur(n: int) -> int:
         count += 1
     return count
 
-## O(n!)
+# O(n!)
 def factorial_recur(n: int) -> int:
     if n == 0:
         return 1
@@ -154,7 +154,7 @@ def factorial_recur(n: int) -> int:
         count += factorial_recur(n-1)
     return count
 
-## Best/Worst time complexity
+# Best/Worst time complexity
 import random
 def random_numbers(n: int) -> list[int]:
     nums = [i for i in range(1, n + 1)]
@@ -163,14 +163,14 @@ def random_numbers(n: int) -> list[int]:
 
 def find_one(nums: list[int]) -> int:
     for i in range(len(nums)):
-    ## when 1 is in the front: best time complexity O(1)
-    ## when i is in the end: worst time complexity O(n)
+    # when 1 is in the front: best time complexity O(1)
+    # when i is in the end: worst time complexity O(n)
         if nums[i] == 1:
             return i
     return -1
 
-##Space-Complexity
-## O(1)
+# Space-Complexity
+# O(1)
 def function() -> int:
     return 0
 
@@ -179,14 +179,14 @@ def constant(n: int):
     a = 0
     nums = [0] * 1000
     node = ListNode(0)
-    ## variable in loop takes space_complexity of O(1)
+    # variable in loop takes space_complexity of O(1)
     for _ in range(n):
         c = 0
-    ## function in loop takes space_complexity of O(1)
+    # function in loop takes space_complexity of O(1)
     for _ in range(n):
         function()
 
-## O(n)
+# O(n)
 def linear(n: int):
     nums = [0] * n
     hmap = dict[int, str]()
@@ -199,18 +199,18 @@ def linear_recur(n: int):
         return
     linear_recur(n - 1)
 
-## O(n^2)
+# O(n^2)
 def quadratic(n: int):
     num_matrix = [[0] * n for _ in range(n)]
 
-## O(n(n+1)/2) -> O(n^2)
+# O(n(n+1)/2) -> O(n^2)
 def quadratic_recur(n: int) -> int:
     if n <= 0:
         return 0
     nums = [0] * n
     return quadratic_recur(n - 1)
 
-## O(2^n)
+# O(2^n)
 from modules import TreeNode
 def build_tree(n: int) -> TreeNode | None:
     if n == 0:
