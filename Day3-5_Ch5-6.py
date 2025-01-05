@@ -410,5 +410,18 @@ class HashMapChaining:
                 res.append(str(pair.key) + "->" + pair.val)
             print(res)
 
+# HashMapOpenAddressing
+class HashMapOpenAddressing:
+    def __init__(self):
+        self.size = 0
+        self.capacity = 4
+        self.load_thres = 2.0 / 3.0
+        self.extend_ratio = 2
+        self.buckets: list[Pair | None] = [None] * self.capacity
+        self.TOMBSTONE = Pair(-1, "-1")
+
+    def hash_function(self, key: int) -> int:
+        return key % self.capacity
+
 
     
