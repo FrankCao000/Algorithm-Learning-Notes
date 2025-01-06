@@ -124,4 +124,3 @@ class MyList:
 
     def to_array(self) -> list[int]:
         return self._arr[: self._size]
-

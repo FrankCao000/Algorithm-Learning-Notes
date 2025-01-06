@@ -509,5 +509,3 @@ def rot_hash(key: str) -> int:
     for c in key:
         hash = (hash << 4) ^ (hash >> 28) ^ ord(c)
     return hash % modulus
-
-    

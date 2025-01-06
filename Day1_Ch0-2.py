@@ -219,4 +219,3 @@ def build_tree(n: int) -> TreeNode | None:
     root.left = build_tree(n - 1)
     root.right = build_tree(n -1)
     return root
-    
