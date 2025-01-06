@@ -422,6 +422,92 @@ class HashMapOpenAddressing:
 
     def hash_function(self, key: int) -> int:
         return key % self.capacity
+    
+    def load_factor(self) -> float:
+        return self.size / self.capacity
+    
+    def find_bucket(self, key: int) -> int:
+        index = self.hash_function(key)
+        firsr_tombstone = -1
+        while self.buckets[index] is not None:
+            if self.buckets[index].key == key:
+                if firsr_tombstone != -1:
+                    self.buckets[firsr_tombstone] = self.buckets[index]
+                    self.buckets[index] = self.TOMBSTONE
+                    return firsr_tombstone
+                return index
+            if firsr_tombstone == -1 and self.buckets[index] is self.TOMBSTONE:
+                firsr_tombstone = index
+            index = (index + 1) % self.capacity
+        return key if firsr_tombstone == -1 else firsr_tombstone
+    
+    def get(self, key: int) -> int:
+        index = self.find_bucket(key)
+        if self.buckets[index] not in [None, self.TOMBSTONE]:
+            return self.buckets[index].val
+        return None
+    
+    def put(self, key: int, val: str):
+        if self.load_factor() > self.load_thres:
+            self.extend()
+        index = self.find_bucket(key)
+        if self.buckets[index] not in [None, self.TOMBSTONE]:
+            self.buckets[index].val = val
+            return
+        self.buckets[index] = Pair(key, val)
+        self.size += 1
 
+    def remove(self, key: int):
+        index = self.find_bucket(key)
+        if self.buckets[index] not in [None, self.TOMBSTONE]:
+            self.buckets[index] = self.TOMBSTONE
+            self.size -= 1
+    
+    def extend(self):
+        buckets_tmp = self.buckets
+        self.capacity *= self.extend_ratio
+        self.buckets = [None] * self.capacity
+        self.size = 0
+        for pair in buckets_tmp:
+            if pair not in [None, self.TOMBSTONE]:
+                self.put(pair.key, pair.val)
+    
+    def print(self):
+        for pair in self.buckets:
+            if pair is None:
+                print("None")
+            elif pair is self.TOMBSTONE:
+                print("TOMBSTONE")
+            else:
+                print(pair.key, "->", pair.val)
+
+# Simple Hash
+def add_hash(key: str) -> int:
+    hash = 0
+    modulus = 1000000007
+    for c in key:
+        hash += ord(c)
+    return hash % modulus
+
+def mul_hash(key: str) -> int:
+    hash = 0
+    modulus = 1000000007
+    for c in key:
+        hash = 31 * hash + ord(c)
+    return hash % modulus
+
+def xor_hash(key: str) -> int:
+    hash = 0
+    modulus = 1000000007
+    for c in key:
+        hash ^= ord(c)
+    return hash % modulus
+
+def rot_hash(key: str) -> int:
+    hash = 0
+    modulus = 1000000007
+    for c in key:
+        hash = (hash << 4) ^ (hash >> 28) ^ ord(c)
+    return hash % modulus
 
     
