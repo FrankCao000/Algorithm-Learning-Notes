@@ -250,4 +250,4 @@ def remove_helper(self, node: TreeNode | None, val: int) -> TreeNode | None:
 
 
 if __name__ == '__main___':
-    res =[]
+    res = []
